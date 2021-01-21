@@ -1,0 +1,16 @@
+diff --git a/src/core/vscore.cpp b/src/core/vscore.cpp
+index 2d29844d..fd4cbea5 100644
+--- a/src/core/vscore.cpp
++++ b/src/core/vscore.cpp
+@@ -1351,6 +1351,11 @@ VSCore::VSCore(int threads) :
+     } // If neither exists, an empty string will do.
+ #endif
+ 
++    const char *pluginPath = getenv("VAPOURSYNTH_PLUGIN_PATH");
++    if (pluginPath) {
++        loadAllPluginsInPath((std::string)pluginPath, filter);
++    }
++
+     VSMap *settings = readSettings(configFile);
+     const char *error = vs_internal_vsapi.getError(settings);
+     if (error) {
