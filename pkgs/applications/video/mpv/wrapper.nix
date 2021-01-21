@@ -38,6 +38,7 @@ let
       "--prefix" "LUA_PATH" ";" "${mpv.luaEnv}/share/lua/${mpv.lua.luaversion}/?.lua"
     ] ++ lib.optionals mpv.vapoursynthSupport [
       "--prefix" "PYTHONPATH" ":" "${mpv.vapoursynth}/${mpv.vapoursynth.python3.sitePackages}"
+      "--set" "VAPOURSYNTH_PLUGIN_PATH" "${mpv.vapoursynth}/lib/vapoursynth"
     ] ++ lib.optionals (binPath != "") [
       "--prefix" "PATH" ":" binPath
     ] ++ (lib.lists.flatten (map
